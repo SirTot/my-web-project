@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        .row div {
+        width: 50px;
+        height: 50px;
+        /*background-color: blue; */
+        border-style: solid;
+        border-color: black;
+        }
+
+        .row {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div id="0-0">1</div>
+        <div id="0-1">2</div>
+        <div id="0-2">3</div>
+    </div>
+    <div class="row">
+        <div id="2-0">4</div>
+        <div id="2-1">5</div>
+        <div id="2-2">6</div>
+    </div>
+    <div class="row">
+        <div id="3-0">7</div>
+        <div id="3-1">8</div>
+        <div id="3-2">9</div>
+    </div>
+</body>
+<script>
+    const cell00 = document.getElementById("0-0")
+    const cell01 = document.getElementById("0-1")
+    const cell02 = document.getElementById("0-2")
+    const cell20 = document.getElementById("2-0")
+    const cell21 = document.getElementById("2-1")
+    const cell22 = document.getElementById("2-2")
+    const cell30 = document.getElementById("3-0")
+    const cell31 = document.getElementById("3-1")
+    const cell32 = document.getElementById("3-2")
+
+    cell00.addEventListener('click', (e) => {
+        cell00.innerHTML = "X"
+        console.log("cell 0-0 was clicked")
+    })
+
+</script>
+</html>
