@@ -19,8 +19,8 @@
         }
     </style>
 </head>
-<body>
-    <div class="row">
+<body id = "body">
+    <!-- <div class="row">
         <div id="0-0">1</div>
         <div id="0-1">2</div>
         <div id="0-2">3</div>
@@ -34,9 +34,24 @@
         <div id="3-0">7</div>
         <div id="3-1">8</div>
         <div id="3-2">9</div>
-    </div>
+    </div> -->
 </body>
-<script>
+<script defer>
+    const body = document.getElementById("body")
+
+    let turn = 0
+
+    for(let i = 0; i < 3; i++){
+        const row = document.createElement("div")
+        row.className = "row"
+        for(let o = 0; o < 3; o++){
+            const cell = document.createElement("div")
+            cell.id = `${i}-${o}`
+            row.append(cell)
+        }
+        body.append(row)
+    }
+
     const cell00 = document.getElementById("0-0")
     const cell01 = document.getElementById("0-1")
     const cell02 = document.getElementById("0-2")
@@ -47,10 +62,19 @@
     const cell31 = document.getElementById("3-1")
     const cell32 = document.getElementById("3-2")
 
-    cell00.addEventListener('click', (e) => {
-        cell00.innerHTML = "X"
-        console.log("cell 0-0 was clicked")
-    })
+    // cell00.addEventListener('click', (e) => {
+
+
+    //     if(turn i % 2 === 0) {
+    //         cell00.innerHTML = "X"
+    //     } else {
+    //         cell00.innerHTML = 'O'
+    //     }
+        
+    //     cell00.innerHTML = "X"
+    //     console.log("cell 0-0 was clicked")
+    //     turn ++
+    // })
 
 </script>
 </html>
