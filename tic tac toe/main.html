@@ -20,25 +20,9 @@
     </style>
 </head>
 <body id = "body">
-    <!-- <div class="row">
-        <div id="0-0">1</div>
-        <div id="0-1">2</div>
-        <div id="0-2">3</div>
-    </div>
-    <div class="row">
-        <div id="2-0">4</div>
-        <div id="2-1">5</div>
-        <div id="2-2">6</div>
-    </div>
-    <div class="row">
-        <div id="3-0">7</div>
-        <div id="3-1">8</div>
-        <div id="3-2">9</div>
-    </div> -->
 </body>
 <script defer>
     const body = document.getElementById("body")
-
     let turn = 0
 
     for(let i = 0; i < 3; i++){
@@ -47,34 +31,25 @@
         for(let o = 0; o < 3; o++){
             const cell = document.createElement("div")
             cell.id = `${i}-${o}`
+            cell.addEventListener('click', markSquare)
             row.append(cell)
         }
         body.append(row)
     }
 
-    const cell00 = document.getElementById("0-0")
-    const cell01 = document.getElementById("0-1")
-    const cell02 = document.getElementById("0-2")
-    const cell20 = document.getElementById("2-0")
-    const cell21 = document.getElementById("2-1")
-    const cell22 = document.getElementById("2-2")
-    const cell30 = document.getElementById("3-0")
-    const cell31 = document.getElementById("3-1")
-    const cell32 = document.getElementById("3-2")
+function markSquare (e) {
+    console.log(e.path[0].id)
+    const cell = document.getElementById(e.path[0].id)
+    // cell.style.backgroundColor = "red"
 
-    // cell00.addEventListener('click', (e) => {
+    if(turn % 2 === 0){
+        cell.innerHTML = "X"
+    }else {
+        cell.innerHTML = "O"
+    }
 
-
-    //     if(turn i % 2 === 0) {
-    //         cell00.innerHTML = "X"
-    //     } else {
-    //         cell00.innerHTML = 'O'
-    //     }
-        
-    //     cell00.innerHTML = "X"
-    //     console.log("cell 0-0 was clicked")
-    //     turn ++
-    // })
+    turn ++
+}
 
 </script>
 </html>
