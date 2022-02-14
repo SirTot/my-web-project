@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        #body > div > div{
+            width: 25px;
+            height: 25px;
+            background-color: lawngreen;
+            border: solid 1px;
+        }
+        #body > div {
+            display: flex;
+        }
+    </style>
+</head>
+<body id="body">
+</body>
+<script>
+    const body = document.getElementById("body");
+    const length = 10;
+    const height = 10;
+
+    for(let y = 0; y < height; y++){
+        const row = document.createElement("div")
+        for(let x = 0; x < length; x++){
+            const cell = document.createElement("div")
+            cell.id = `${x}-${y}`
+            row.append(cell)
+        }
+        body.append(row)
+    }
+
+    document.addEventListener("keydown", (e) => {
+        console.log(e)
+    })
+</script>
+</html>
