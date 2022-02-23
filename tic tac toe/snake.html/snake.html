@@ -23,6 +23,13 @@
     const body = document.getElementById("body");
     const length = 10;
     const height = 10;
+    const speed = 100;
+
+    let xPos = Math.trunc(length / 2)
+    let yPos = Math.trunc(height / 2)
+    let direction = "right"
+
+    setInterval(draw, speed)
 
     for(let y = 0; y < height; y++){
         const row = document.createElement("div")
@@ -35,7 +42,62 @@
     }
 
     document.addEventListener("keydown", (e) => {
-        console.log(e)
+        switch(e.key){
+            case 'w':
+            direction = "up";
+            break;
+            case 'd':
+            direction = "right";
+            break;
+            case 's':
+            direction = "down";
+            break;
+            case 'a':
+            direction ="left";
+            break;
+        }
     })
+
+    function draw(){
+        // console.log(xPos, yPos)
+        changePosition()
+        removeAllChildNotes(body)
+        for(let y = 0; y < height; y++){
+            const row = document.createElement("div");
+            for(let x = 0; x < length ; x++){
+                const cell = document.createElement("div");
+                cell.id = `${x}-${y}`
+                
+                if(xPos === x && yPos === y){
+                    cell.style.backgroundColor = "red"
+                }
+                row.append(cell)
+            }
+            body.append(row)
+        }
+    }
+    
+    function changePosition(){
+        switch(direction){
+            case "up":
+            yPos--;
+            break;
+            case "right":
+            xPos++;
+            break;
+            case "down":
+            yPos++;
+            break;
+            case "left":
+            xPos--;
+            break;
+        }
+    }
+
+    function removeAllChildNotes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
 </script>
 </html>
