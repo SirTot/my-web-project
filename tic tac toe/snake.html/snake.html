@@ -21,25 +21,29 @@
 </body>
 <script>
     const body = document.getElementById("body");
-    const length = 10;
-    const height = 10;
-    const speed = 100;
+    const length = 28;
+    const height = 28;
+    const speed = 250;
 
     let xPos = Math.trunc(length / 2)
     let yPos = Math.trunc(height / 2)
     let direction = "right"
 
-    setInterval(draw, speed)
+    const snakeInitialLength = 5;
+    let score = 0;
+    let snakeBody = [{x: xPos, y: yPos}]
 
-    for(let y = 0; y < height; y++){
-        const row = document.createElement("div")
-        for(let x = 0; x < length; x++){
-            const cell = document.createElement("div")
-            cell.id = `${x}-${y}`
-            row.append(cell)
-        }
-        body.append(row)
-    }
+    const interval = setInterval(draw, speed)
+
+    // for(let y = 0; y < height; y++){
+    //     const row = document.createElement("div")
+    //     for(let x = 0; x < length; x++){
+    //         const cell = document.createElement("div")
+    //         cell.id = `${x}-${y}`
+    //         row.append(cell)
+    //     }
+    //     body.append(row)
+    // }
 
     document.addEventListener("keydown", (e) => {
         switch(e.key){
@@ -75,6 +79,23 @@
             }
             body.append(row)
         }
+
+        if(xPos < -1 || xPos > length || yPos < -1 || yPos > height){
+        console.log("death")
+        clearInterval(interval)
+    }
+    
+    snakeBody.push({x:xPos, y:yPos})
+
+    const snake = []
+    for(let i = snakeBody.length - 1; i > snakeBody.length - (snakeInitialLength + score) && i > 0; i--){
+        snake.push(snakeBody[i])
+    }
+
+    snake.forEach(part => {
+        document.getElementById(`${part.x}-${part.y}`).style.backgroundColor = "blue" 
+    })
+
     }
     
     function changePosition(){
