@@ -17,13 +17,17 @@
         }
     </style>
 </head>
-<body id="body">
+<body>
+    <button class="start-button" id="start-button">start</button>
+    <div id="body"></div>
 </body>
 <script>
     const body = document.getElementById("body");
+    const startButton = document.getElementById("start-button")
     const length = 28;
     const height = 28;
     const speed = 250;
+    let started = false;
 
     let xPos = Math.trunc(length / 2)
     let yPos = Math.trunc(height / 2)
@@ -33,17 +37,17 @@
     let score = 0;
     let snakeBody = [{x: xPos, y: yPos}]
 
-    const interval = setInterval(draw, speed)
+    let interval;
 
-    // for(let y = 0; y < height; y++){
-    //     const row = document.createElement("div")
-    //     for(let x = 0; x < length; x++){
-    //         const cell = document.createElement("div")
-    //         cell.id = `${x}-${y}`
-    //         row.append(cell)
-    //     }
-    //     body.append(row)
-    // }
+    draw();
+    startButton.addEventListener("click", ()=>{
+        if(!started){
+            interval = setInterval(draw, speed)
+            started = true
+        }
+
+    })
+
 
     document.addEventListener("keydown", (e) => {
         switch(e.key){
@@ -63,15 +67,16 @@
     })
 
     function draw(){
-        // console.log(xPos, yPos)
+        let alternateColor = true;
         changePosition()
         removeAllChildNotes(body)
         for(let y = 0; y < height; y++){
             const row = document.createElement("div");
             for(let x = 0; x < length ; x++){
                 const cell = document.createElement("div");
+                if(alternateColor) cell.style.backgroundImage = "#00cc00"
+                alternateColor = !alternateColor
                 cell.id = `${x}-${y}`
-                
                 if(xPos === x && yPos === y){
                     cell.style.backgroundColor = "red"
                 }
