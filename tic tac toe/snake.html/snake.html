@@ -24,10 +24,11 @@
 <script>
     const body = document.getElementById("body");
     const startButton = document.getElementById("start-button")
-    const length = 28;
-    const height = 28;
-    const speed = 250;
     let started = false;
+
+    const length = 25;
+    const height = 20;
+    const speed = 125;
 
     let xPos = Math.trunc(length / 2)
     let yPos = Math.trunc(height / 2)
@@ -36,6 +37,7 @@
     const snakeInitialLength = 5;
     let score = 0;
     let snakeBody = [{x: xPos, y: yPos}]
+    let appleCoords = generateAppleCoords()
 
     let interval;
 
@@ -45,23 +47,31 @@
             interval = setInterval(draw, speed)
             started = true
         }
-
+        spawnApple()
     })
 
 
     document.addEventListener("keydown", (e) => {
         switch(e.key){
             case 'w':
-            direction = "up";
+                if(direction !== "down"){
+                    direction = "up";
+                }
             break;
             case 'd':
+                if(direction !== "left"){
             direction = "right";
+                }
             break;
             case 's':
+                if(direction !== "up"){
             direction = "down";
+                }
             break;
             case 'a':
+                if(direction !== "right"){
             direction ="left";
+                }
             break;
         }
     })
@@ -74,7 +84,7 @@
             const row = document.createElement("div");
             for(let x = 0; x < length ; x++){
                 const cell = document.createElement("div");
-                if(alternateColor) cell.style.backgroundImage = "#00cc00"
+                if(alternateColor) cell.style.backgroundColor = "#00cc00"
                 alternateColor = !alternateColor
                 cell.id = `${x}-${y}`
                 if(xPos === x && yPos === y){
@@ -97,8 +107,10 @@
         snake.push(snakeBody[i])
     }
 
+    spawnApple(appleCoords.x, appleCoords.y)
+
     snake.forEach(part => {
-        document.getElementById(`${part.x}-${part.y}`).style.backgroundColor = "blue" 
+        document.getElementById(`${part.x}-${part.y}`).style.backgroundColor = "blue"
     })
 
     }
@@ -124,6 +136,20 @@
         while (parent.firstChild) {
             parent.removeChild(parent.firstChild);
         }
+
     }
+    function generateAppleCoords (){
+        const xValue = Math.round(Math.random() * length)
+        const yValue = Math.round(Math.random() * height)
+        return {x: xValue, y: yValue}
+    }
+
+    function spawnApple(xValue, yValue) {
+
+        const cell = document.getElementById(`${xValue}-${yValue}`)
+
+        cell.style.backgroundColor = 'red'
+    }
+
 </script>
 </html>
