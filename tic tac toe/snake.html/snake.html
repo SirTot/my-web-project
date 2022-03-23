@@ -15,6 +15,11 @@
         #body > div {
             display: flex;
         }
+
+        #body {
+            border: 20px solid black;
+            width: fit-content;
+        }
     </style>
 </head>
 <body>
@@ -80,6 +85,10 @@
         let alternateColor = true;
         changePosition()
         removeAllChildNotes(body)
+        if(appleCoords.x === xPos && appleCoords.y === yPos){
+            appleCoords = generateAppleCoords()
+            score ++;
+        }
         for(let y = 0; y < height; y++){
             const row = document.createElement("div");
             for(let x = 0; x < length ; x++){
@@ -96,6 +105,9 @@
         }
 
         if(xPos < -1 || xPos > length || yPos < -1 || yPos > height){
+            snakeBody.forEach(snakeSegment => {
+                if xPos
+            })
         console.log("death")
         clearInterval(interval)
     }
