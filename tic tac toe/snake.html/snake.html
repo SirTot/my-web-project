@@ -20,10 +20,23 @@
             border: 20px solid black;
             width: fit-content;
         }
+
+        #controls {
+            display: flex;
+        }
+
+        #controls * {
+            margin: 2vh;
+        }
+
     </style>
 </head>
 <body>
-    <button class="start-button" id="start-button">start</button>
+    <div id="controls">
+        <button class="start-button" id="start-button">start</button>
+        <h1>score:</h1>
+        <h1 id="score">0</h1>
+    </div>
     <div id="body"></div>
 </body>
 <script>
@@ -88,6 +101,7 @@
         if(appleCoords.x === xPos && appleCoords.y === yPos){
             appleCoords = generateAppleCoords()
             score ++;
+            document.getElementById("score").innerHTML = score
         }
         for(let y = 0; y < height; y++){
             const row = document.createElement("div");
@@ -105,9 +119,6 @@
         }
 
         if(xPos < -1 || xPos > length || yPos < -1 || yPos > height){
-            snakeBody.forEach(snakeSegment => {
-                if xPos
-            })
         console.log("death")
         clearInterval(interval)
     }
@@ -117,6 +128,8 @@
     const snake = []
     for(let i = snakeBody.length - 1; i > snakeBody.length - (snakeInitialLength + score) && i > 0; i--){
         snake.push(snakeBody[i])
+
+
     }
 
     spawnApple(appleCoords.x, appleCoords.y)
