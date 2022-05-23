@@ -65,7 +65,6 @@
             interval = setInterval(draw, speed)
             started = true
         }
-        spawnApple()
     })
 
 
@@ -119,7 +118,7 @@
         }
 
         if(xPos < -1 || xPos > length || yPos < -1 || yPos > height){
-        console.log("death")
+        window.alert("death")
         clearInterval(interval)
     }
     
@@ -134,7 +133,13 @@
 
     spawnApple(appleCoords.x, appleCoords.y)
 
-    snake.forEach(part => {
+    snake.forEach((part, index) => {
+
+        if(index > 0 && xPos === part.x && yPos === part.y) {
+            window.alert("death")
+            return clearInterval(interval)
+        }
+
         document.getElementById(`${part.x}-${part.y}`).style.backgroundColor = "blue"
     })
 
